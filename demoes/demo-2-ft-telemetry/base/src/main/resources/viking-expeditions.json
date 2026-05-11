@@ -1,0 +1,92 @@
+[
+  {
+    "id": "raid-england",
+    "destination": "Raid on England",
+    "departureDate": "2026-05-15",
+    "warriorSlots": 50,
+    "chief": "Erik the Red",
+    "description": "A daring expedition to the English coasts, rich in monasteries and treasure. Warriors will face Saxon defenses and return with glory and plunder. We will sail across the North Sea, making strategic stops along the way.",
+    "requirements": "Combat experience required. Ability to swim recommended. Personal weapons mandatory. Duration: 3 months."
+  },
+  {
+    "id": "expedition-iceland",
+    "destination": "Expedition to Iceland",
+    "departureDate": "2026-05-20",
+    "warriorSlots": 40,
+    "chief": "Bjorn Ironside",
+    "description": "Exploration and colonization of the volcanic lands of Iceland. A mission to establish a new Viking settlement, including the construction of farms and ports. A pristine territory offering new opportunities.",
+    "requirements": "Skills in construction and agriculture are appreciated. Suitable for all skill levels. Duration: 6 months."
+  },
+  {
+    "id": "conquest-normandie",
+    "destination": "Conquest of Normandy",
+    "departureDate": "2026-06-01",
+    "warriorSlots": 35,
+    "chief": "Ragnar Lodbrok",
+    "description": "A major campaign to conquer Frankish lands. Objective: to establish a permanent kingdom in Normandy. Intense battles expected against Carolingian armies. A great opportunity for land and titles.",
+    "requirements": "Experienced warriors only. Training in battle tactics required. Duration: 12 months."
+  },
+  {
+    "id": "exploration-greenland",
+    "destination": "Exploration of Greenland",
+    "departureDate": "2026-06-10",
+    "warriorSlots": 30,
+    "chief": "Lagertha",
+    "description": "An exploratory voyage to the icy lands of Greenland. Discover new trade routes and establish trading posts. Navigate treacherous waters filled with icebergs. For the most adventurous souls.",
+    "requirements": "Resistance to extreme cold. Recommended age: 18+. Duration: 4 months."
+  },
+  {
+    "id": "raid-ireland",
+    "destination": "Raid on Ireland",
+    "departureDate": "2026-05-25",
+    "warriorSlots": 45,
+    "chief": "Harald Fairhair",
+    "description": "An expedition targeting Irish monasteries, renowned for their wealth in gold and manuscripts. Lush green islands offering a favorable climate. Swift attacks and a return laden with significant plunder.",
+    "requirements": "All skill levels welcome. Training provided. Duration: 2 months."
+  },
+  {
+    "id": "route-constantinople",
+    "destination": "Route to Constantinople",
+    "departureDate": "2026-07-01",
+    "warriorSlots": 25,
+    "chief": "Ivar the Boneless",
+    "description": "An epic journey to Byzantium via the rivers of Russia. Trade in furs and amber with the Byzantine Empire. An encounter with the Varangian Guard. A long-duration cultural and trading expedition.",
+    "requirements": "All ages. Trading experience appreciated. Long duration: 18 months. No out-of-character interpretation allowed."
+  },
+  {
+    "id": "sacking-paris",
+    "destination": "The Sacking of Paris",
+    "departureDate": "2026-06-15",
+    "warriorSlots": 40,
+    "chief": "Rollo",
+    "description": "Sailing up the Seine to the very gates of Paris. A siege of the Frankish city followed by negotiations for massive tributes. A spectacular operation combining river navigation with coordinated assaults.",
+    "requirements": "All skill levels welcome. Training in river navigation provided. Duration: 3 months."
+  },
+  {
+    "id": "raiding-frisia",
+    "destination": "Raiding in Frisia",
+    "departureDate": "2026-05-30",
+    "warriorSlots": 20,
+    "chief": "Sigurd Snake-in-the-Eye",
+    "description": "A showcase of coordinated raids along the Frisian coast. An adults-only operation featuring intense combat and audacious strategies. A small, elite troop ensures maximum efficiency and maximum loot per warrior.",
+    "requirements": "Restricted to ages 21 and over. Duration: 6 weeks. Contains intense violence and coarse language."
+  },
+  {
+    "id": "discovery-vinland",
+    "destination": "Discovery of Vinland",
+    "departureDate": "2026-08-01",
+    "warriorSlots": 30,
+    "chief": "Leif Erikson",
+    "description": "A legendary expedition toward the mysterious lands to the west. The first exploration of Vinland (America). Features open-ocean navigation, the discovery of wild grapevines, and fertile new lands. For the truly intrepid explorer.",
+    "requirements": "All skill levels welcome. Departure: Afternoon. Duration: 12 months."
+  },
+  {
+    "id": "conquest-orkneys",
+    "destination": "Conquest of the Orkneys",
+    "departureDate": "2026-05-18",
+    "warriorSlots": 45,
+    "chief": "Torstein the Strong",
+    "description": "Establishment of a Viking kingdom in the Orkney and Hebridean Islands. A blend of colonization, raiding, and trade. Strategic islands for control of the North Sea. War music and celebrations guaranteed.",
+    "requirements": "All skill levels welcome. Duration: 8 months."
+  }
+]

@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>demo-3-mcp-sindi-ai</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>sindi-ai-casino-dice-roller</artifactId>
+    <packaging>war</packaging>
+    <name>LangChain4j-CDI Demo 3 MCP Server</name>
+    <description>MCP Server Casino Dice game — powered by Sindi AI MCP</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+        <sindi-ai-mcp.version>0.0.4</sindi-ai-mcp.version>
+    </properties>
+    
+    <repositories>
+		<repository>
+			<name>Central Portal Snapshots</name>
+			<id>central-portal-snapshots</id>
+			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+    <dependencyManagement>
+        <dependencies>
+			<dependency>
+				<groupId>za.co.sindi</groupId>
+				<artifactId>sindi-ai-mcp-server-spi</artifactId>
+				<version>${sindi-ai-mcp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>za.co.sindi</groupId>
+				<artifactId>sindi-ai-mcp-server-runtime-rest-streamable-http</artifactId>
+				<version>${sindi-ai-mcp.version}</version>
+			</dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+    	<!-- Jakarta EE -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- MicroProfile -->
+        <dependency>
+            <groupId>org.eclipse.microprofile</groupId>
+            <artifactId>microprofile</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- LangChain4j-CDI MCP Server -->
+        <dependency>
+			<groupId>za.co.sindi</groupId>
+			<artifactId>sindi-ai-mcp-server-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>za.co.sindi</groupId>
+			<artifactId>sindi-ai-mcp-server-runtime-rest-streamable-http</artifactId>
+		</dependency>
+    </dependencies>
+
+    <build>
+        <finalName>casino-dice-roller</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <parameters>true</parameters>
+                </configuration>
+            </plugin>
+
+            <!--Build configuration for the WAR plugin: -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- Jakarta EE doesn't require web.xml, Maven needs to catch up! -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

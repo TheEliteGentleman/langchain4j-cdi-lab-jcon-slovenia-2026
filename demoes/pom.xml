@@ -1,0 +1,326 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>langchain4j-cdi-demo</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>LangChain4j-CDI Demo — JCON Slovenia 2026</name>
+	<description>Progressive demos: Injectable AI Agent, Fault Tolerance, MCP</description>
+
+    <developers>
+        <developer>
+            <name>Buhake Sindi</name>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+	
+    <properties>
+        <project.report.sourceEncoding>UTF-8</project.report.sourceEncoding>
+        <microprofile-api.version>7.1</microprofile-api.version>
+        <compiler-plugin.version>3.15.0</compiler-plugin.version>
+        <war-plugin.version>3.5.1</war-plugin.version>
+		<!-- We need only javac to use the release parameter. OpenLiberty doesn't depend on maven-compiler-plugin.' -->
+        <maven.compiler.source>25</maven.compiler.source>
+		<maven.compiler.target>25</maven.compiler.target>
+		<maven.compiler.release>25</maven.compiler.release>
+
+		<!--Strictly for OpenLiberty-->
+        <liberty.env.ENGINE_CACHE_DIR>${project.build.directory}/liberty/wlp/usr/shared/resources/lib/</liberty.env.ENGINE_CACHE_DIR>
+        
+        <dev.langchain4j.version>1.14.0</dev.langchain4j.version>
+        <dev.langchain4j.community.version>1.14.0-beta24</dev.langchain4j.community.version>
+        <langchain4j.cdi.version>1.2.0</langchain4j.cdi.version>
+
+		<!-- Payara Micro -->
+        <payara.version>7.2025.1</payara.version>
+        <payara.home>payara6</payara.home>
+        
+        <!-- WildFly Galleon -->
+        <wildfly.galleon.version>40.0.0.Final</wildfly.galleon.version>
+        
+         <!-- A2A SDK -->
+        <a2a-sdk.version>0.3.3.Final</a2a-sdk.version>
+        <a2a-jakarta.version>0.3.0.Final</a2a-jakarta.version>
+
+        <!-- Apache Tika language detection -->
+        <tika.version>4.0.0-alpha-1</tika.version>
+    </properties>
+	
+    <dependencyManagement>
+        <dependencies>
+			<dependency>
+				<groupId>jakarta.platform</groupId>
+				<artifactId>jakarta.jakartaee-api</artifactId>
+				<version>10.0.0</version>
+				<scope>provided</scope>
+			</dependency>
+			
+            <dependency>
+                <groupId>org.eclipse.microprofile</groupId>
+                <artifactId>microprofile</artifactId>
+                <version>${microprofile-api.version}</version>
+                <type>pom</type>
+                <scope>provided</scope>
+            </dependency>
+			
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${dev.langchain4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+			<!--
+            <dependency>
+                <groupId>io.opentelemetry</groupId>
+                <artifactId>opentelemetry-api</artifactId>
+                <version>1.44.1</version>
+                <scope>provided</scope>
+            </dependency>
+			
+            <dependency>
+                <groupId>io.opentelemetry.instrumentation</groupId>
+                <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+                <version>2.10.0</version>
+                <scope>provided</scope>
+            </dependency>
+            -->
+			<!--
+            <dependency>
+                <groupId>fish.payara.api</groupId>
+                <artifactId>payara-bom</artifactId>
+                <version>${payara.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        	-->
+        	
+        	<!-- LangChain4j-CDI -->
+            <dependency>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-cdi-core</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-cdi-build-compatible-ext</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi</groupId>
+                <artifactId>langchain4j-cdi-portable-ext</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi.mp</groupId>
+                <artifactId>langchain4j-cdi-config</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi.mp</groupId>
+                <artifactId>langchain4j-cdi-telemetry</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi.mp</groupId>
+                <artifactId>langchain4j-cdi-fault-tolerance</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            
+            <!-- LangChain4j -->
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-azure-open-ai</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+                <version>${dev.langchain4j.community.version}</version>
+            </dependency>
+
+            <!-- LangChain4j-CDI MCP Server -->
+            <dependency>
+                <groupId>dev.langchain4j.cdi.mcp</groupId>
+                <artifactId>langchain4j-cdi-mcp-server</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j.cdi.mcp</groupId>
+                <artifactId>langchain4j-cdi-mcp-build-compatible-ext</artifactId>
+                <version>${langchain4j.cdi.version}</version>
+            </dependency>
+            
+			<!-- https://mvnrepository.com/artifact/dev.langchain4j/langchain4j-google-ai-gemini -->
+			<dependency>
+			    <groupId>dev.langchain4j</groupId>
+			    <artifactId>langchain4j-google-ai-gemini</artifactId>
+			    <version>${dev.langchain4j.version}</version>
+			</dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-hugging-face</artifactId>
+                <version>${dev.langchain4j.community.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-mistral-ai</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-ollama</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-open-ai</artifactId>
+                <version>${dev.langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ai.djl.huggingface</groupId>
+                <artifactId>tokenizers</artifactId>
+                <version>0.35.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-xml</artifactId>
+                <version>1.0.0-beta.3</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>2.0.17</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- A2A SDK -->
+            <dependency>
+                <groupId>io.github.a2asdk</groupId>
+                <artifactId>a2a-java-sdk-server-common</artifactId>
+                <version>${a2a-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly.a2a</groupId>
+                <artifactId>a2a-java-sdk-jakarta-jsonrpc</artifactId>
+                <version>${a2a-jakarta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.a2asdk</groupId>
+                <artifactId>a2a-java-sdk-client</artifactId>
+                <version>${a2a-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.a2asdk</groupId>
+                <artifactId>a2a-java-sdk-client-transport-jsonrpc</artifactId>
+                <version>${a2a-sdk.version}</version>
+            </dependency>
+
+            <!-- Apache Tika language detection -->
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId>
+                <version>${tika.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-langdetect-optimaize</artifactId>
+                <version>${tika.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
+    <build>
+        <pluginManagement>
+            <plugins>
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler-plugin.version}</version>
+					<configuration>
+						<parameters>true</parameters>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+					</configuration>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.5.2</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${war-plugin.version}</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+				
+                <plugin>
+                    <groupId>io.openliberty.tools</groupId>
+                    <artifactId>liberty-maven-plugin</artifactId>
+                    <version>3.12.0</version>
+                    <configuration>
+                        <bootstrapProperties>
+                            <project.name>${project.build.finalName}</project.name>
+                        </bootstrapProperties>
+                    </configuration>
+                </plugin>
+
+				<!-- Execute 'mvn clean package payara-server:dev' to run the application. -->
+            	<plugin>
+                    <groupId>fish.payara.maven.plugins</groupId>
+                    <artifactId>payara-server-maven-plugin</artifactId>
+                    <version>1.1.0</version>
+                    <configuration>
+                        <payaraServerVersion>${payara.version}</payaraServerVersion>
+	                    <contextRoot>/${project.build.finalName}</contextRoot>
+	                    <autoDeploy>true</autoDeploy>
+	                    <liveReload>true</liveReload>
+	                    <debug>true</debug>
+	                    <exploded>true</exploded>
+                    </configuration>
+            	</plugin>
+            	
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>6.0.0.Final</version>
+                    <configuration>
+                        <feature-packs>
+                            <feature-pack>
+                                <location>org.wildfly:wildfly-galleon-pack:${wildfly.galleon.version}</location>
+                            </feature-pack>
+                        </feature-packs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <modules>
+        <module>demo-1-ai-agent</module>
+        <module>demo-2-ft-telemetry</module>
+        <module>demo-3-mcp</module>
+        <module>demo-3-mcp-sindi-ai</module>
+        <module>demo-4-guardrails</module>
+        <module>demo-5-a2a</module>
+		<module>demo-5-a2a-sindi-ai</module>
+    </modules>
+</project>

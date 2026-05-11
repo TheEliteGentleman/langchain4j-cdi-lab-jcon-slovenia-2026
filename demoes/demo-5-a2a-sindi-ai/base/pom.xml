@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>demo-5-a2a-sindi-ai</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>demo-5-a2a-sindi-ai-base</artifactId>
+    <packaging>pom</packaging>
+    <name>LangChain4j-CDI Demo 5 Base (Live Coding)</name>
+    
+    <properties>
+    	<sindi-ai-a2a.version>0.0.3</sindi-ai-a2a.version>
+    </properties>
+    
+    <repositories>
+		<repository>
+			<name>Central Portal Snapshots</name>
+			<id>central-portal-snapshots</id>
+			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+    <dependencyManagement>
+        <dependencies>
+			<dependency>
+				<groupId>za.co.sindi</groupId>
+				<artifactId>sindi-ai-a2a-server-spi</artifactId>
+				<version>${sindi-ai-a2a.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>za.co.sindi</groupId>
+				<artifactId>sindi-ai-a2a-server-runtime-rest-json-rpc</artifactId>
+				<version>${sindi-ai-a2a.version}</version>
+			</dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>a2a-creative-writer</module>
+        <module>a2a-style-scorer</module>
+        <module>a2a-orchestrator</module>
+    </modules>
+</project>
