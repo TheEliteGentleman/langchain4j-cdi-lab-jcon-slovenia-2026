@@ -17,7 +17,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
-        <sindi-ai-mcp.version>0.0.1-SNAPSHOT</sindi-ai-mcp.version>
+        <sindi-ai-mcp.version>0.0.3</sindi-ai-mcp.version>
     </properties>
     
     <repositories>
